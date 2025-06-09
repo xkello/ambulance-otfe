@@ -1,11 +1,11 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('x-hospital-navbar', () => {
+describe('ot-hospital-navbar', () => {
   it('renders', async () => {
     const page = await newE2EPage();
-    await page.setContent('<x-hospital-navbar></x-hospital-navbar>');
+    await page.setContent('<ot-hospital-navbar></ot-hospital-navbar>');
 
-    const element = await page.find('x-hospital-navbar');
+    const element = await page.find('ot-hospital-navbar');
     expect(element).toHaveClass('hydrated');
   });
 });

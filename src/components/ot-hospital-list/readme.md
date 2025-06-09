@@ -1,4 +1,4 @@
-# x-hospital-list
+# ot-hospital-list
 
 
 
@@ -37,13 +37,13 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [x-hospital-app](../x-hospital-app)
+ - [ot-hospital-app](../ot-hospital-app)
 
 ### Graph
 ```mermaid
 graph TD;
-  x-hospital-app --> x-hospital-list
-  style x-hospital-list fill:#f9f,stroke:#333,stroke-width:4px
+  ot-hospital-app --> ot-hospital-list
+  style ot-hospital-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

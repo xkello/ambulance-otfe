@@ -2,11 +2,11 @@ import {Host, Component, Prop, State, h} from '@stencil/core';
 import {HospitalsApi, Hospital, Configuration} from '../../api/hospital';
 
 @Component({
-  tag: 'x-hospital-navbar',
-  styleUrl: 'x-hospital-navbar.css',
+  tag: 'ot-hospital-navbar',
+  styleUrl: 'ot-hospital-navbar.css',
   shadow: true,
 })
-export class XHospitalNavbar {
+export class OtHospitalNavbar {
   @Prop() apiBase!: string;
   @Prop({mutable: true}) hospitalId!: string;
   @Prop() basePath: string = '/employee-list/';
@@ -28,7 +28,7 @@ export class XHospitalNavbar {
         this.hospitalName = current?.name || this.selectedHospitalId;
       }
     } catch (e) {
-      console.error('x-hospital-navbar: failed to load hospitals', e);
+      console.error('ot-hospital-navbar: failed to load hospitals', e);
     }
   }
 
@@ -75,9 +75,9 @@ export class XHospitalNavbar {
                 this.handleHospitalChange(newId);
               }}
             >
-              {this.hospitals.map(x => (
-                <md-select-option value={x.id} selected={x.id === this.selectedHospitalId}>
-                  <div slot="headline">{x.name}</div>
+              {this.hospitals.map(ot => (
+                <md-select-option value={ot.id} selected={ot.id === this.selectedHospitalId}>
+                  <div slot="headline">{ot.name}</div>
                 </md-select-option>
               ))}
             </md-filled-select>

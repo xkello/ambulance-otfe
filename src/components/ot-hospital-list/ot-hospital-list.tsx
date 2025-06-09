@@ -2,12 +2,12 @@ import {Component, Event, EventEmitter, Host, Prop, State, h, Method, Watch} fro
 import {HospitalEmployeeListApi, EmployeeListEntry, Configuration} from '../../api/hospital';
 
 @Component({
-  tag: 'x-hospital-list',
-  styleUrl: 'x-hospital-list.css',
+  tag: 'ot-hospital-list',
+  styleUrl: 'ot-hospital-list.css',
   shadow: true,
 })
 
-export class XHospitalList {
+export class OtHospitalList {
   @Event({eventName: "entry-clicked", composed: true}) entryClicked: EventEmitter<string>;
   @Prop() apiBase: string;
   @Prop() hospitalId!: string;
@@ -16,27 +16,27 @@ export class XHospitalList {
   @State() employees: EmployeeListEntry[] = [];
 
   async componentWillLoad() {
-    console.log('x-hospital-list: componentWillLoad', {apiBase: this.apiBase, hospitalId: this.hospitalId});
+    console.log('ot-hospital-list: componentWillLoad', {apiBase: this.apiBase, hospitalId: this.hospitalId});
     return this.getEmployeeAsync();
   }
 
   @Watch('hospitalId')
   async hospitalChanged(newId: string) {
-    console.log('x-hospital-list: hospitalId changed → reloading', {newId});
+    console.log('ot-hospital-list: hospitalId changed → reloading', {newId});
     console.log('📋 List reloading for hospital', newId);
     this.employees = await this.getEmployeeAsync();
   }
 
   async componentDidLoad() {
-    console.log('x-hospital-list: componentDidLoad', {employeesCount: this.employees?.length});
+    console.log('ot-hospital-list: componentDidLoad', {employeesCount: this.employees?.length});
   }
 
   async componentDidUpdate() {
-    console.log('x-hospital-list: componentDidUpdate', {employeesCount: this.employees?.length});
+    console.log('ot-hospital-list: componentDidUpdate', {employeesCount: this.employees?.length});
   }
 
   private async getEmployeeAsync(): Promise<EmployeeListEntry[]> {
-    console.log('x-hospital-list: getEmployeeAsync - starting API request', {
+    console.log('ot-hospital-list: getEmployeeAsync - starting API request', {
       apiBase: this.apiBase,
       hospitalId: this.hospitalId
     });
@@ -46,50 +46,50 @@ export class XHospitalList {
       });
 
       const employeeListApi = new HospitalEmployeeListApi(configuration);
-      console.log('x-hospital-list: getEmployeeAsync - sending request');
+      console.log('ot-hospital-list: getEmployeeAsync - sending request');
       const response = await employeeListApi.getEmployeeListEntriesRaw({hospitalId: this.hospitalId})
-      console.log('x-hospital-list: getEmployeeAsync - received response', {
+      console.log('ot-hospital-list: getEmployeeAsync - received response', {
         status: response.raw.status,
         statusText: response.raw.statusText
       });
 
       if (response.raw.status < 299) {
         const data = await response.value();
-        console.log('x-hospital-list: getEmployeeAsync - parsed response data', {count: data.length});
+        console.log('ot-hospital-list: getEmployeeAsync - parsed response data', {count: data.length});
         this.employees = data;
         return data;
       } else {
         this.errorMessage = `Cannot retrieve list of employees: ${response.raw.statusText}`;
-        console.error('x-hospital-list: getEmployeeAsync - error response', {
+        console.error('ot-hospital-list: getEmployeeAsync - error response', {
           status: response.raw.status,
           statusText: response.raw.statusText
         });
       }
     } catch (err: any) {
       this.errorMessage = `Cannot retrieve list of employees: ${err.message || "unknown"}`;
-      console.error('x-hospital-list: getEmployeeAsync - exception', {message: err.message, error: err});
+      console.error('ot-hospital-list: getEmployeeAsync - exception', {message: err.message, error: err});
     }
     this.employees = [];
     return [];
   }
 
   private handleAddClick = () => {
-    console.log('x-hospital-list: Add button clicked');
+    console.log('ot-hospital-list: Add button clicked');
     try {
       this.entryClicked.emit("@new");
-      console.log('x-hospital-list: entryClicked event emitted with @new');
+      console.log('ot-hospital-list: entryClicked event emitted with @new');
     } catch (err) {
-      console.error('x-hospital-list: Error emitting entryClicked event', err);
+      console.error('ot-hospital-list: Error emitting entryClicked event', err);
     }
   }
 
   private handleEmployeeClick = (employeeId: string) => {
-    console.log('x-hospital-list: Employee item clicked', {employeeId});
+    console.log('ot-hospital-list: Employee item clicked', {employeeId});
     try {
       this.entryClicked.emit(employeeId);
-      console.log('x-hospital-list: entryClicked event emitted with employeeId', {employeeId});
+      console.log('ot-hospital-list: entryClicked event emitted with employeeId', {employeeId});
     } catch (err) {
-      console.error('x-hospital-list: Error emitting entryClicked event', err);
+      console.error('ot-hospital-list: Error emitting entryClicked event', err);
     }
   }
 
@@ -99,7 +99,7 @@ export class XHospitalList {
   }
 
   render() {
-    console.log('x-hospital-list: render', {
+    console.log('ot-hospital-list: render', {
       hasError: !!this.errorMessage,
       employeesCount: this.employees?.length
     });

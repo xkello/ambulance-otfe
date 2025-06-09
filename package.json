@@ -1,5 +1,5 @@
 {
-  "name": "ambulance-xfe",
+  "name": "ambulance-otfe",
   "version": "1.0.0",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -7,11 +7,11 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/ambulance-xfe/ambulance-xfe.esm.js",
+  "unpkg": "dist/ambulance-otfe/ambulance-otfe.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/ambulance-xfe/ambulance-xfe.esm.js",
-      "require": "./dist/ambulance-xfe/ambulance-xfe.cjs.js"
+      "import": "./dist/ambulance-otfe/ambulance-otfe.esm.js",
+      "require": "./dist/ambulance-otfe/ambulance-otfe.cjs.js"
     },
     "./my-component": {
       "import": "./dist/components/my-component.js",

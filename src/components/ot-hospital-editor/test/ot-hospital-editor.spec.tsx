@@ -1,9 +1,9 @@
 import {newSpecPage} from '@stencil/core/testing';
-import {XHospitalEditor} from '../x-hospital-editor';
+import {OtHospitalEditor} from '../ot-hospital-editor';
 import fetchMock from 'jest-fetch-mock';
 import {EmployeeListEntry, Role} from '../../../api/hospital';
 
-describe('x-hospital-editor', () => {
+describe('ot-hospital-editor', () => {
   const sampleEntry: EmployeeListEntry = {
     id: "entry-1",
     name: "Juraj Prvý",
@@ -43,8 +43,8 @@ describe('x-hospital-editor', () => {
     );
 
     const page = await newSpecPage({
-      components: [XHospitalEditor],
-      html: `<x-hospital-editor entry-id="test-entry" hospital-id="test-hospital" api-base="http://sample.test/api"></x-hospital-editor>`,
+      components: [OtHospitalEditor],
+      html: `<ot-hospital-editor entry-id="test-entry" hospital-id="test-hospital" api-base="http://sample.test/api"></ot-hospital-editor>`,
     });
 
     await delay(300);
@@ -61,8 +61,8 @@ describe('x-hospital-editor', () => {
     );
 
     const page = await newSpecPage({
-      components: [XHospitalEditor],
-      html: `<x-hospital-editor entry-id="test-entry" hospital-id="test-hospital" api-base="http://sample.test/api"></x-hospital-editor>`,
+      components: [OtHospitalEditor],
+      html: `<ot-hospital-editor entry-id="test-entry" hospital-id="test-hospital" api-base="http://sample.test/api"></ot-hospital-editor>`,
     });
 
     await delay(300);

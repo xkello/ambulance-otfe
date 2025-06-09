@@ -1,4 +1,4 @@
-# x-hospital-app
+# ot-hospital-app
 
 
 
@@ -18,17 +18,17 @@
 
 ### Depends on
 
-- [x-hospital-navbar](../x-hospital-navbar)
-- [x-hospital-list](../x-hospital-list)
-- [x-hospital-editor](../x-hospital-editor)
+- [ot-hospital-navbar](../ot-hospital-navbar)
+- [ot-hospital-list](../ot-hospital-list)
+- [ot-hospital-editor](../ot-hospital-editor)
 
 ### Graph
 ```mermaid
 graph TD;
-  x-hospital-app --> x-hospital-navbar
-  x-hospital-app --> x-hospital-list
-  x-hospital-app --> x-hospital-editor
-  style x-hospital-app fill:#f9f,stroke:#333,stroke-width:4px
+  ot-hospital-app --> ot-hospital-navbar
+  ot-hospital-app --> ot-hospital-list
+  ot-hospital-app --> ot-hospital-editor
+  style ot-hospital-app fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

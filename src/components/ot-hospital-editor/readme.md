@@ -1,4 +1,4 @@
-# x-hospital-editor
+# ot-hospital-editor
 
 
 
@@ -25,13 +25,13 @@
 
 ### Used by
 
- - [x-hospital-app](../x-hospital-app)
+ - [ot-hospital-app](../ot-hospital-app)
 
 ### Graph
 ```mermaid
 graph TD;
-  x-hospital-app --> x-hospital-editor
-  style x-hospital-editor fill:#f9f,stroke:#333,stroke-width:4px
+  ot-hospital-app --> ot-hospital-editor
+  style ot-hospital-editor fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

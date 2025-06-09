@@ -2,7 +2,7 @@ import { Config } from '@stencil/core';
 
 export const config: Config = {
   globalScript: 'src/global/app.ts',
-  namespace: 'ambulance-xfe',
+  namespace: 'ambulance-otfe',
   outputTargets: [
     {
       type: 'dist',

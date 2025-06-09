@@ -1,4 +1,4 @@
-# x-hospital-navbar
+# ot-hospital-navbar
 
 
 
@@ -18,13 +18,13 @@
 
 ### Used by
 
- - [x-hospital-app](../x-hospital-app)
+ - [ot-hospital-app](../ot-hospital-app)
 
 ### Graph
 ```mermaid
 graph TD;
-  x-hospital-app --> x-hospital-navbar
-  style x-hospital-navbar fill:#f9f,stroke:#333,stroke-width:4px
+  ot-hospital-app --> ot-hospital-navbar
+  style ot-hospital-navbar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

@@ -1,15 +1,15 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { XHospitalNavbar } from '../x-hospital-navbar';
+import { OtHospitalNavbar } from '../ot-hospital-navbar';
 
-describe('x-hospital-navbar', () => {
+describe('ot-hospital-navbar', () => {
   it('renders the nav skeleton even on 404', async () => {
     const page = await newSpecPage({
-      components: [ XHospitalNavbar ],
-      html:       `<x-hospital-navbar></x-hospital-navbar>`,
+      components: [ OtHospitalNavbar ],
+      html:       `<ot-hospital-navbar></ot-hospital-navbar>`,
     });
 
     expect(page.root).toEqualHtml(`
-      <x-hospital-navbar>
+      <ot-hospital-navbar>
         <mock:shadow-root>
           <nav class="navbar">
             <div class="navbar-brand"></div>
@@ -20,7 +20,7 @@ describe('x-hospital-navbar', () => {
             </div>
           </nav>
         </mock:shadow-root>
-      </x-hospital-navbar>
+      </ot-hospital-navbar>
     `);
   });
 });

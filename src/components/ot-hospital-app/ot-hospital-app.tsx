@@ -7,12 +7,12 @@ declare global {
 }
 
 @Component({
-  tag: 'x-hospital-app',
-  styleUrl: 'x-hospital-app.css',
+  tag: 'ot-hospital-app',
+  styleUrl: 'ot-hospital-app.css',
   shadow: true,
 })
 
-export class XHospitalApp {
+export class OtHospitalApp {
   @State() currentView: 'employees' | 'clinic' = 'employees';
   @Prop() basePath: string = "";
   @Prop() apiBase: string;
@@ -27,7 +27,7 @@ export class XHospitalApp {
 
     if (ev.detail === 'employees') {
       const list = this.host.shadowRoot!
-        .querySelector('x-hospital-list') as any;
+        .querySelector('ot-hospital-list') as any;
       if (list && typeof list.reload === 'function') {
         await list.reload();
       }
@@ -41,7 +41,7 @@ export class XHospitalApp {
   }
 
   componentWillLoad() {
-    console.log('x-hospital-app: componentWillLoad', {
+    console.log('ot-hospital-app: componentWillLoad', {
       basePath: this.basePath,
       apiBase: this.apiBase,
       hospitalId: this.hospitalId
@@ -49,18 +49,18 @@ export class XHospitalApp {
   }
 
   componentDidLoad() {
-    console.log('x-hospital-app: componentDidLoad');
+    console.log('ot-hospital-app: componentDidLoad');
   }
 
   componentDidUpdate() {
-    console.log('x-hospital-app: componentDidUpdate', {
+    console.log('ot-hospital-app: componentDidUpdate', {
       isModalOpen: this.isModalOpen,
       modalEntryId: this.modalEntryId
     });
   }
 
   render() {
-    console.log("x-hospital-app: render", {
+    console.log("ot-hospital-app: render", {
       isModalOpen: this.isModalOpen,
       modalEntryId: this.modalEntryId,
       apiBase: this.apiBase,
@@ -68,7 +68,7 @@ export class XHospitalApp {
     });
 
     const handleEntryClicked = (ev: CustomEvent<string>) => {
-      console.log('x-hospital-app: handleEntryClicked event received', {
+      console.log('ot-hospital-app: handleEntryClicked event received', {
         detail: ev.detail,
         currentModalState: this.isModalOpen
       });
@@ -76,44 +76,44 @@ export class XHospitalApp {
       try {
         this.isModalOpen = true;
         this.modalEntryId = ev.detail;
-        console.log('x-hospital-app: Modal state updated', {
+        console.log('ot-hospital-app: Modal state updated', {
           isModalOpen: this.isModalOpen,
           modalEntryId: this.modalEntryId
         });
       } catch (err) {
-        console.error('x-hospital-app: Error handling entry clicked event', err);
+        console.error('ot-hospital-app: Error handling entry clicked event', err);
       }
     };
 
     const handleEditorClosed = async (ev: CustomEvent<string>) => {
-      console.log('x-hospital-app: handleEditorClosed event received', {
+      console.log('ot-hospital-app: handleEditorClosed event received', {
         detail: ev.detail,
         currentModalState: this.isModalOpen
       });
 
       try {
         this.isModalOpen = false;
-        console.log('x-hospital-app: Modal closed');
-        const list = this.host.shadowRoot!.querySelector('x-hospital-list') as any;
+        console.log('ot-hospital-app: Modal closed');
+        const list = this.host.shadowRoot!.querySelector('ot-hospital-list') as any;
         if (list && typeof list.reload === 'function') {
           await list.reload();
         }
-        console.log('x-hospital-app: Reloaded list after closing editor');
+        console.log('ot-hospital-app: Reloaded list after closing editor');
       } catch (err) {
-        console.error('x-hospital-app: Error handling editor closed event', err);
+        console.error('ot-hospital-app: Error handling editor closed event', err);
       }
     };
 
     return (
       <Host>
-        <x-hospital-navbar
+        <ot-hospital-navbar
           apiBase={this.apiBase}
           hospitalId={this.hospitalId}
           basePath={this.basePath}
         />
 
         {this.currentView === 'employees' &&
-          <x-hospital-list
+          <ot-hospital-list
             hospitalId={this.hospitalId}
             apiBase={this.apiBase}
             onentry-clicked={handleEntryClicked}
@@ -130,10 +130,10 @@ export class XHospitalApp {
         {this.isModalOpen && (
           <div class="modal-overlay" onClick={() => this.isModalOpen = false}>
             <div class="modal-container" onClick={(e) => e.stopPropagation()}>
-              <x-hospital-editor entry-id={this.modalEntryId}
+              <ot-hospital-editor entry-id={this.modalEntryId}
                                  hospitalId={this.hospitalId} apiBase={this.apiBase}
                                  oneditor-closed={handleEditorClosed}>
-              </x-hospital-editor>
+              </ot-hospital-editor>
             </div>
           </div>
         )}

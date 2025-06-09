@@ -1,11 +1,11 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('x-hospital-app', () => {
+describe('ot-hospital-editor', () => {
   it('renders', async () => {
     const page = await newE2EPage();
-    await page.setContent('<x-hospital-app></x-hospital-app>');
+    await page.setContent('<ot-hospital-editor></ot-hospital-editor>');
 
-    const element = await page.find('x-hospital-app');
+    const element = await page.find('ot-hospital-editor');
     expect(element).toHaveClass('hydrated');
   });
 });

@@ -11,11 +11,11 @@ import {
 } from '../../api/hospital';
 
 @Component({
-  tag: 'x-hospital-editor',
-  styleUrl: 'x-hospital-editor.css',
+  tag: 'ot-hospital-editor',
+  styleUrl: 'ot-hospital-editor.css',
   shadow: true,
 })
-export class XHospitalEditor {
+export class OtHospitalEditor {
   @Prop() entryId: string;
   @Prop() hospitalId: string;
   @Prop() apiBase: string;
@@ -40,7 +40,7 @@ export class XHospitalEditor {
   }
 
   async componentWillLoad() {
-    console.log('x-hospital-editor: componentWillLoad', {
+    console.log('ot-hospital-editor: componentWillLoad', {
       entryId: this.entryId,
       hospitalId: this.hospitalId,
       apiBase: this.apiBase
@@ -52,7 +52,7 @@ export class XHospitalEditor {
     this.targetHospitalId = this.hospitalId;
     this.dataLoading = false;
 
-    console.log('x-hospital-editor: componentWillLoad completed', {
+    console.log('ot-hospital-editor: componentWillLoad completed', {
       entryLoaded: !!this.entry,
       rolesLoaded: this.roles?.length,
       isValid: this.isValid
@@ -60,7 +60,7 @@ export class XHospitalEditor {
   }
 
   componentDidLoad() {
-    console.log('x-hospital-editor: componentDidLoad', {
+    console.log('ot-hospital-editor: componentDidLoad', {
       entryId: this.entryId,
       isValid: this.isValid,
       hasError: !!this.errorMessage
@@ -68,7 +68,7 @@ export class XHospitalEditor {
   }
 
   componentDidUpdate() {
-    console.log('x-hospital-editor: componentDidUpdate', {
+    console.log('ot-hospital-editor: componentDidUpdate', {
       entryId: this.entryId,
       isValid: this.isValid,
       hasError: !!this.errorMessage
@@ -76,7 +76,7 @@ export class XHospitalEditor {
   }
 
   render() {
-    console.log('x-hospital-editor: render', {
+    console.log('ot-hospital-editor: render', {
       hasError: !!this.errorMessage,
       isLoading: this.dataLoading,
       entryId: this.entryId,
@@ -84,7 +84,7 @@ export class XHospitalEditor {
     });
 
     if (this.errorMessage) {
-      console.log('x-hospital-editor: render - showing error message', {errorMessage: this.errorMessage});
+      console.log('ot-hospital-editor: render - showing error message', {errorMessage: this.errorMessage});
       return (
         <Host>
           <div class="error">{this.errorMessage}</div>
@@ -153,10 +153,10 @@ export class XHospitalEditor {
   }
 
   private async getEmployeeEntryAsync(): Promise<EmployeeListEntry> {
-    console.log('x-hospital-editor: getEmployeeEntryAsync - starting', {entryId: this.entryId});
+    console.log('ot-hospital-editor: getEmployeeEntryAsync - starting', {entryId: this.entryId});
 
     if (this.entryId === "@new") {
-      console.log('x-hospital-editor: getEmployeeEntryAsync - creating new entry');
+      console.log('ot-hospital-editor: getEmployeeEntryAsync - creating new entry');
       this.isValid = false;
       //TODO: create entry
       this.entry = {
@@ -168,13 +168,13 @@ export class XHospitalEditor {
     }
 
     if (!this.entryId) {
-      console.log('x-hospital-editor: getEmployeeEntryAsync - no entryId provided');
+      console.log('ot-hospital-editor: getEmployeeEntryAsync - no entryId provided');
       this.isValid = false;
       return undefined
     }
 
     try {
-      console.log('x-hospital-editor: getEmployeeEntryAsync - fetching entry', {
+      console.log('ot-hospital-editor: getEmployeeEntryAsync - fetching entry', {
         apiBase: this.apiBase,
         hospitalId: this.hospitalId,
         entryId: this.entryId
@@ -186,12 +186,12 @@ export class XHospitalEditor {
 
       const employeeListApi = new HospitalEmployeeListApi(configuration);
 
-      console.log('x-hospital-editor: getEmployeeEntryAsync - sending request');
+      console.log('ot-hospital-editor: getEmployeeEntryAsync - sending request');
       const response = await employeeListApi.getEmployeeListEntryRaw({
         hospitalId: this.hospitalId,
         entryId: this.entryId
       });
-      console.log('x-hospital-editor: getEmployeeEntryAsync - received response', {
+      console.log('ot-hospital-editor: getEmployeeEntryAsync - received response', {
         status: response.raw.status,
         statusText: response.raw.statusText
       });
@@ -199,19 +199,19 @@ export class XHospitalEditor {
       if (response.raw.status < 299) {
         this.entry = await response.value();
         this.isValid = true;
-        console.log('x-hospital-editor: getEmployeeEntryAsync - entry loaded successfully', {
+        console.log('ot-hospital-editor: getEmployeeEntryAsync - entry loaded successfully', {
           entry: this.entry
         });
       } else {
         this.errorMessage = `Cannot retrieve list of employees: ${response.raw.statusText}`;
-        console.error('x-hospital-editor: getEmployeeEntryAsync - error response', {
+        console.error('ot-hospital-editor: getEmployeeEntryAsync - error response', {
           status: response.raw.status,
           statusText: response.raw.statusText
         });
       }
     } catch (err: any) {
       this.errorMessage = `Cannot retrieve list of employees: ${err.message || "unknown"}`;
-      console.error('x-hospital-editor: getEmployeeEntryAsync - exception', {
+      console.error('ot-hospital-editor: getEmployeeEntryAsync - exception', {
         message: err.message,
         error: err
       });
@@ -220,7 +220,7 @@ export class XHospitalEditor {
   }
 
   private async getRoles(): Promise<Role[]> {
-    console.log('x-hospital-editor: getRoles - starting', {
+    console.log('ot-hospital-editor: getRoles - starting', {
       apiBase: this.apiBase,
       hospitalId: this.hospitalId
     });
@@ -232,33 +232,33 @@ export class XHospitalEditor {
 
       const rolesApi = new HospitalRolesApi(configuration);
 
-      console.log('x-hospital-editor: getRoles - sending request');
+      console.log('ot-hospital-editor: getRoles - sending request');
       const response = await rolesApi.getRolesRaw({hospitalId: this.hospitalId});
-      console.log('x-hospital-editor: getRoles - received response', {
+      console.log('ot-hospital-editor: getRoles - received response', {
         status: response.raw.status,
         statusText: response.raw.statusText
       });
 
       if (response.raw.status < 299) {
         this.roles = await response.value();
-        console.log('x-hospital-editor: getRoles - roles loaded successfully', {
+        console.log('ot-hospital-editor: getRoles - roles loaded successfully', {
           rolesCount: this.roles?.length
         });
       } else {
-        console.warn('x-hospital-editor: getRoles - error response', {
+        console.warn('ot-hospital-editor: getRoles - error response', {
           status: response.raw.status,
           statusText: response.raw.statusText
         });
       }
     } catch (err: any) {
-      console.warn('x-hospital-editor: getRoles - exception (non-critical)', {
+      console.warn('ot-hospital-editor: getRoles - exception (non-critical)', {
         message: err.message,
         error: err
       });
     }
 
     if (!this.roles || this.roles.length === 0) {
-      console.log('x-hospital-editor: getRoles - using fallback role');
+      console.log('ot-hospital-editor: getRoles - using fallback role');
       this.roles = [{
         code: "fallback",
         value: "You did not set employee`s role",
@@ -276,10 +276,10 @@ export class XHospitalEditor {
           <md-filled-text-field label="Name & Surname"
                                 required="" value={this.entry?.name}
                                 oninput={(ev: InputEvent) => {
-                                  console.log('x-hospital-editor: name field input event');
+                                  console.log('ot-hospital-editor: name field input event');
                                   if (this.entry) {
                                     this.entry.name = this.handleInputEvent(ev);
-                                    console.log('x-hospital-editor: name updated', {
+                                    console.log('ot-hospital-editor: name updated', {
                                       newName: this.entry.name,
                                       isValid: this.isValid
                                     });
@@ -294,13 +294,13 @@ export class XHospitalEditor {
                                 max="10"
                                 value={this.entry?.performance !== undefined ? this.entry.performance.toString() : "0"}
                                 oninput={(ev: InputEvent) => {
-                                  console.log('x-hospital-editor: performance field input event');
+                                  console.log('ot-hospital-editor: performance field input event');
                                   if (this.entry) {
                                     const value = this.handleInputEvent(ev);
                                     const numValue = parseInt(value);
                                     if (!isNaN(numValue) && numValue >= 0 && numValue <= 10) {
                                       this.entry.performance = numValue;
-                                      console.log('x-hospital-editor: performance updated', {
+                                      console.log('ot-hospital-editor: performance updated', {
                                         newPerformance: this.entry.performance,
                                         isValid: this.isValid
                                       });
@@ -347,14 +347,14 @@ export class XHospitalEditor {
     return (
       <div class="transfer-view">
         <form>
-          {this.hospitals.map(x => (
+          {this.hospitals.map(ot => (
             <label>
               <input type="radio"
                      name="targetHospital"
-                     value={x.id}
-                     checked={x.id === this.targetHospitalId}
+                     value={ot.id}
+                     checked={ot.id === this.targetHospitalId}
                      onInput={(ev: any) => this.targetHospitalId = ev.target.value}/>
-              {x.name}
+              {ot.name}
             </label>
           ))}
         </form>
@@ -513,7 +513,7 @@ export class XHospitalEditor {
   }
 
   private renderRoles() {
-    console.log('x-hospital-editor: renderRoles - starting', {
+    console.log('ot-hospital-editor: renderRoles - starting', {
       rolesCount: this.roles?.length,
       entryHasRole: !!this.entry?.role
     });
@@ -521,18 +521,18 @@ export class XHospitalEditor {
     let roles = this.roles || [];
     if (this.entry?.role) {
       const index = roles.findIndex(role => role.code === this.entry.role.code)
-      console.log('x-hospital-editor: renderRoles - checking if entry role exists in roles list', {
+      console.log('pt-hospital-editor: renderRoles - checking if entry role exists in roles list', {
         roleCode: this.entry.role.code,
         roleExists: index >= 0
       });
 
       if (index < 0) {
-        console.log('x-hospital-editor: renderRoles - adding entry role to roles list');
+        console.log('ot-hospital-editor: renderRoles - adding entry role to roles list');
         roles = [this.entry.role, ...roles]
       }
     }
 
-    console.log('x-hospital-editor: renderRoles - rendering select with roles', {
+    console.log('ot-hospital-editor: renderRoles - rendering select with roles', {
       finalRolesCount: roles.length,
       selectedRole: this.entry?.role?.code
     });
@@ -543,7 +543,7 @@ export class XHospitalEditor {
                         oninput={(ev: InputEvent) => this.handleRole(ev)}>
         <md-icon slot="leading-icon">sick</md-icon>
         {roles.map(role => {
-          console.log('x-hospital-editor: renderRoles - rendering role option', {
+          console.log('ot-hospital-editor: renderRoles - rendering role option', {
             code: role.code,
             value: role.value,
             isSelected: role.code === this.entry?.role?.code
@@ -562,27 +562,27 @@ export class XHospitalEditor {
   }
 
   private handleRole(ev: InputEvent) {
-    console.log('x-hospital-editor: handleRole - role selection changed');
+    console.log('ot-hospital-editor: handleRole - role selection changed');
     if (this.entry) {
       const code = this.handleInputEvent(ev);
-      console.log('x-hospital-editor: handleRole - looking for role with code', {code});
+      console.log('ot-hospital-editor: handleRole - looking for role with code', {code});
       const role = this.roles.find(role => role.code === code);
       if (role) {
         this.entry.role = Object.assign({}, role);
-        console.log('x-hospital-editor: handleRole - role updated', {
+        console.log('ot-hospital-editor: handleRole - role updated', {
           code: role.code,
           value: role.value
         });
       } else {
-        console.warn('x-hospital-editor: handleRole - role not found for code', {code});
+        console.warn('ot-hospital-editor: handleRole - role not found for code', {code});
       }
     } else {
-      console.warn('x-hospital-editor: handleRole - entry is null or undefined');
+      console.warn('ot-hospital-editor: handleRole - entry is null or undefined');
     }
   }
 
   private handleInputEvent(ev: InputEvent): string {
-    console.log('x-hospital-editor: handleInputEvent - input event received');
+    console.log('ot-hospital-editor: handleInputEvent - input event received');
     const target = ev.target as HTMLInputElement;
 
     this.isValid = true;
@@ -592,7 +592,7 @@ export class XHospitalEditor {
         const valid = (element as HTMLInputElement).reportValidity();
         this.isValid &&= valid;
         if (!valid) {
-          console.log('x-hospital-editor: handleInputEvent - invalid element found', {
+          console.log('ot-hospital-editor: handleInputEvent - invalid element found', {
             element: element.tagName,
             index: i
           });
@@ -600,7 +600,7 @@ export class XHospitalEditor {
       }
     }
 
-    console.log('x-hospital-editor: handleInputEvent - form validity checked', {
+    console.log('ot-hospital-editor: handleInputEvent - form validity checked', {
       isValid: this.isValid,
       value: target.value
     });
@@ -609,7 +609,7 @@ export class XHospitalEditor {
   }
 
   private async updateEntry(closeEditor: boolean = true) {
-    console.log('x-hospital-editor: updateEntry - starting', {
+    console.log('ot-hospital-editor: updateEntry - starting', {
       entryId: this.entryId,
       isNew: this.entryId === "@new",
       entry: this.entry,
@@ -623,7 +623,7 @@ export class XHospitalEditor {
 
       const employeeListApi = new HospitalEmployeeListApi(configuration);
 
-      console.log('x-hospital-editor: updateEntry - sending request', {
+      console.log('ot-hospital-editor: updateEntry - sending request', {
         isNew: this.entryId === "@new",
         apiBase: this.apiBase,
         hospitalId: this.hospitalId
@@ -640,28 +640,28 @@ export class XHospitalEditor {
           employeeListEntry: this.entry
         });
 
-      console.log('x-hospital-editor: updateEntry - received response', {
+      console.log('ot-hospital-editor: updateEntry - received response', {
         status: response.raw.status,
         statusText: response.raw.statusText
       });
 
       if (response.raw.status < 299) {
         if (closeEditor) {
-          console.log('x-hospital-editor: updateEntry - success, emitting editor-closed event');
+          console.log('ot-hospital-editor: updateEntry - success, emitting editor-closed event');
           this.editorClosed.emit("store");
         } else {
-          console.log('x-hospital-editor: updateEntry - success, not closing editor');
+          console.log('ot-hospital-editor: updateEntry - success, not closing editor');
         }
       } else {
         this.errorMessage = `Cannot store entry: ${response.raw.statusText}`;
-        console.error('x-hospital-editor: updateEntry - error response', {
+        console.error('ot-hospital-editor: updateEntry - error response', {
           status: response.raw.status,
           statusText: response.raw.statusText
         });
       }
     } catch (err: any) {
       this.errorMessage = `Cannot store entry: ${err.message || "unknown"}`;
-      console.error('x-hospital-editor: updateEntry - exception', {
+      console.error('ot-hospital-editor: updateEntry - exception', {
         message: err.message,
         error: err
       });
@@ -669,7 +669,7 @@ export class XHospitalEditor {
   }
 
   private async deleteEntry() {
-    console.log('x-hospital-editor: deleteEntry - starting', {
+    console.log('ot-hospital-editor: deleteEntry - starting', {
       entryId: this.entryId,
       hospitalId: this.hospitalId
     });
@@ -681,36 +681,36 @@ export class XHospitalEditor {
 
       const employeeListApi = new HospitalEmployeeListApi(configuration);
 
-      console.log('x-hospital-editor: deleteEntry - sending request');
+      console.log('ot-hospital-editor: deleteEntry - sending request');
       const response = await employeeListApi.deleteEmployeeListEntryRaw({
         hospitalId: this.hospitalId,
         entryId: this.entryId
       });
-      console.log('x-hospital-editor: deleteEntry - received response', {
+      console.log('ot-hospital-editor: deleteEntry - received response', {
         status: response.raw.status,
         statusText: response.raw.statusText
       });
 
       if (response.raw.status < 299) {
-        console.log('x-hospital-editor: deleteEntry - success, emitting editor-closed event');
+        console.log('ot-hospital-editor: deleteEntry - success, emitting editor-closed event');
         this.editorClosed.emit("delete");
       } else {
         this.errorMessage = `Cannot delete entry: ${response.raw.statusText}`;
-        console.error('x-hospital-editor: deleteEntry - error response', {
+        console.error('ot-hospital-editor: deleteEntry - error response', {
           status: response.raw.status,
           statusText: response.raw.statusText
         });
       }
     } catch (err: any) {
       this.errorMessage = `Cannot delete entry: ${err.message || "unknown"}`;
-      console.error('x-hospital-editor: deleteEntry - exception', {
+      console.error('ot-hospital-editor: deleteEntry - exception', {
         message: err.message,
         error: err
       });
     }
   }
 
-  
+
   private handlePerformanceInput(ev: InputEvent, field: keyof PerformanceEntry) {
     const target = ev.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
     const value = target.value;

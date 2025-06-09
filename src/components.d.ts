@@ -6,126 +6,126 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface XHospitalApp {
+    interface OtHospitalApp {
         "apiBase": string;
         "basePath": string;
         "hospitalId": string;
     }
-    interface XHospitalEditor {
+    interface OtHospitalEditor {
         "apiBase": string;
         "entryId": string;
         "hospitalId": string;
     }
-    interface XHospitalList {
+    interface OtHospitalList {
         "apiBase": string;
         "hospitalId": string;
         "reload": () => Promise<void>;
     }
-    interface XHospitalNavbar {
+    interface OtHospitalNavbar {
         "apiBase": string;
         "basePath": string;
         "hospitalId": string;
     }
 }
-export interface XHospitalEditorCustomEvent<T> extends CustomEvent<T> {
+export interface OtHospitalEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLXHospitalEditorElement;
+    target: HTMLOtHospitalEditorElement;
 }
-export interface XHospitalListCustomEvent<T> extends CustomEvent<T> {
+export interface OtHospitalListCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLXHospitalListElement;
+    target: HTMLOtHospitalListElement;
 }
 declare global {
-    interface HTMLXHospitalAppElement extends Components.XHospitalApp, HTMLStencilElement {
+    interface HTMLOtHospitalAppElement extends Components.OtHospitalApp, HTMLStencilElement {
     }
-    var HTMLXHospitalAppElement: {
-        prototype: HTMLXHospitalAppElement;
-        new (): HTMLXHospitalAppElement;
+    var HTMLOtHospitalAppElement: {
+        prototype: HTMLOtHospitalAppElement;
+        new (): HTMLOtHospitalAppElement;
     };
-    interface HTMLXHospitalEditorElementEventMap {
+    interface HTMLOtHospitalEditorElementEventMap {
         "editor-closed": string;
     }
-    interface HTMLXHospitalEditorElement extends Components.XHospitalEditor, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLXHospitalEditorElementEventMap>(type: K, listener: (this: HTMLXHospitalEditorElement, ev: XHospitalEditorCustomEvent<HTMLXHospitalEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLOtHospitalEditorElement extends Components.OtHospitalEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLOtHospitalEditorElementEventMap>(type: K, listener: (this: HTMLOtHospitalEditorElement, ev: OtHospitalEditorCustomEvent<HTMLOtHospitalEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLXHospitalEditorElementEventMap>(type: K, listener: (this: HTMLXHospitalEditorElement, ev: XHospitalEditorCustomEvent<HTMLXHospitalEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLOtHospitalEditorElementEventMap>(type: K, listener: (this: HTMLOtHospitalEditorElement, ev: OtHospitalEditorCustomEvent<HTMLOtHospitalEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLXHospitalEditorElement: {
-        prototype: HTMLXHospitalEditorElement;
-        new (): HTMLXHospitalEditorElement;
+    var HTMLOtHospitalEditorElement: {
+        prototype: HTMLOtHospitalEditorElement;
+        new (): HTMLOtHospitalEditorElement;
     };
-    interface HTMLXHospitalListElementEventMap {
+    interface HTMLOtHospitalListElementEventMap {
         "entry-clicked": string;
     }
-    interface HTMLXHospitalListElement extends Components.XHospitalList, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLXHospitalListElementEventMap>(type: K, listener: (this: HTMLXHospitalListElement, ev: XHospitalListCustomEvent<HTMLXHospitalListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLOtHospitalListElement extends Components.OtHospitalList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLOtHospitalListElementEventMap>(type: K, listener: (this: HTMLOtHospitalListElement, ev: OtHospitalListCustomEvent<HTMLOtHospitalListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLXHospitalListElementEventMap>(type: K, listener: (this: HTMLXHospitalListElement, ev: XHospitalListCustomEvent<HTMLXHospitalListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLOtHospitalListElementEventMap>(type: K, listener: (this: HTMLOtHospitalListElement, ev: OtHospitalListCustomEvent<HTMLOtHospitalListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLXHospitalListElement: {
-        prototype: HTMLXHospitalListElement;
-        new (): HTMLXHospitalListElement;
+    var HTMLOtHospitalListElement: {
+        prototype: HTMLOtHospitalListElement;
+        new (): HTMLOtHospitalListElement;
     };
-    interface HTMLXHospitalNavbarElement extends Components.XHospitalNavbar, HTMLStencilElement {
+    interface HTMLOtHospitalNavbarElement extends Components.OtHospitalNavbar, HTMLStencilElement {
     }
-    var HTMLXHospitalNavbarElement: {
-        prototype: HTMLXHospitalNavbarElement;
-        new (): HTMLXHospitalNavbarElement;
+    var HTMLOtHospitalNavbarElement: {
+        prototype: HTMLOtHospitalNavbarElement;
+        new (): HTMLOtHospitalNavbarElement;
     };
     interface HTMLElementTagNameMap {
-        "x-hospital-app": HTMLXHospitalAppElement;
-        "x-hospital-editor": HTMLXHospitalEditorElement;
-        "x-hospital-list": HTMLXHospitalListElement;
-        "x-hospital-navbar": HTMLXHospitalNavbarElement;
+        "ot-hospital-app": HTMLOtHospitalAppElement;
+        "ot-hospital-editor": HTMLOtHospitalEditorElement;
+        "ot-hospital-list": HTMLOtHospitalListElement;
+        "ot-hospital-navbar": HTMLOtHospitalNavbarElement;
     }
 }
 declare namespace LocalJSX {
-    interface XHospitalApp {
+    interface OtHospitalApp {
         "apiBase"?: string;
         "basePath"?: string;
         "hospitalId"?: string;
     }
-    interface XHospitalEditor {
+    interface OtHospitalEditor {
         "apiBase"?: string;
         "entryId"?: string;
         "hospitalId"?: string;
-        "onEditor-closed"?: (event: XHospitalEditorCustomEvent<string>) => void;
+        "onEditor-closed"?: (event: OtHospitalEditorCustomEvent<string>) => void;
     }
-    interface XHospitalList {
+    interface OtHospitalList {
         "apiBase"?: string;
         "hospitalId": string;
-        "onEntry-clicked"?: (event: XHospitalListCustomEvent<string>) => void;
+        "onEntry-clicked"?: (event: OtHospitalListCustomEvent<string>) => void;
     }
-    interface XHospitalNavbar {
+    interface OtHospitalNavbar {
         "apiBase": string;
         "basePath"?: string;
         "hospitalId": string;
     }
     interface IntrinsicElements {
-        "x-hospital-app": XHospitalApp;
-        "x-hospital-editor": XHospitalEditor;
-        "x-hospital-list": XHospitalList;
-        "x-hospital-navbar": XHospitalNavbar;
+        "ot-hospital-app": OtHospitalApp;
+        "ot-hospital-editor": OtHospitalEditor;
+        "ot-hospital-list": OtHospitalList;
+        "ot-hospital-navbar": OtHospitalNavbar;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "x-hospital-app": LocalJSX.XHospitalApp & JSXBase.HTMLAttributes<HTMLXHospitalAppElement>;
-            "x-hospital-editor": LocalJSX.XHospitalEditor & JSXBase.HTMLAttributes<HTMLXHospitalEditorElement>;
-            "x-hospital-list": LocalJSX.XHospitalList & JSXBase.HTMLAttributes<HTMLXHospitalListElement>;
-            "x-hospital-navbar": LocalJSX.XHospitalNavbar & JSXBase.HTMLAttributes<HTMLXHospitalNavbarElement>;
+            "ot-hospital-app": LocalJSX.OtHospitalApp & JSXBase.HTMLAttributes<HTMLOtHospitalAppElement>;
+            "ot-hospital-editor": LocalJSX.OtHospitalEditor & JSXBase.HTMLAttributes<HTMLOtHospitalEditorElement>;
+            "ot-hospital-list": LocalJSX.OtHospitalList & JSXBase.HTMLAttributes<HTMLOtHospitalListElement>;
+            "ot-hospital-navbar": LocalJSX.OtHospitalNavbar & JSXBase.HTMLAttributes<HTMLOtHospitalNavbarElement>;
         }
     }
 }

@@ -1,12 +1,12 @@
 import {newSpecPage} from '@stencil/core/testing';
-import {OTHospitalApp} from '../ot-hospital-app';
+import {OtHospitalApp} from '../ot-hospital-app';
 
 describe('ot-hospital-app', () => {
 
   it('always renders navbar as first child', async () => {
     const page = await newSpecPage({
       url: 'http://localhost/',
-      components: [OTHospitalApp],
+      components: [OtHospitalApp],
       html: `<ot-hospital-app base-path="/" api-base="http://localhost/api" hospital-id="hospital-ba"></ot-hospital-app>`
     });
 
@@ -17,7 +17,7 @@ describe('ot-hospital-app', () => {
   it('always renders list as second child', async () => {
     const page = await newSpecPage({
       url: 'http://localhost/hospital/',
-      components: [OTHospitalApp],
+      components: [OtHospitalApp],
       html: `<ot-hospital-app base-path="/hospital/" api-base="http://localhost/api" hospital-id="hospital-ba"></ot-hospital-app>`
     });
 
